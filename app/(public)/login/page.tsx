@@ -1,4 +1,4 @@
-import LoginCard from '@/app/components/cards/login-card';
+import LoginCard from '@/app/components/cards/loginCard';
 import Link from 'next/link';
 
 export default function Login() {

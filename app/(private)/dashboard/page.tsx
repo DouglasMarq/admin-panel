@@ -1,9 +1,12 @@
-import LogoutButton from '@/app/components/buttons/logout-button';
+import { logout } from '@/app/actions/auth';
+import Button from '@/app/components/button';
 
 export default function Dashboard() {
   return (
     <div>
-      <LogoutButton label="Logout"></LogoutButton>
+      <Button action={logout} type="primary">
+        Logout
+      </Button>
     </div>
   );
 }

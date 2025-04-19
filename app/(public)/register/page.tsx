@@ -1,4 +1,4 @@
-import RegisterCard from '@/app/components/cards/register-card';
+import RegisterCard from '@/app/components/cards/registerCard';
 
 export default function Register() {
   return (

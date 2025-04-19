@@ -1,44 +1,16 @@
 'use client';
 
-import { Card, Input, Button, Form, message } from 'antd';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { login } from '@/app/actions/auth';
+import { Card, Input, Form } from 'antd';
+import Button from '@/app/components/button';
+import useLogin from '@/app/components/cards/hooks/useLogin';
 
 export default function LoginCard() {
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
-
-  function redirectToRegister() {
-    router.push('/register');
-  }
-
-  async function handleSubmit(values: { email: string; password: string }) {
-    setIsLoading(true);
-
-    try {
-      const result = await login(values);
-
-      if (result.success) {
-        message.success('Login successful!');
-
-        router.push('/dashboard');
-      }
-
-      if (!result.success) message.error(result.error || 'Login failed');
-    } catch (error) {
-      console.error('Login submission error:', error);
-      message.error('An unexpected error occurred');
-    }
-
-    setIsLoading(false);
-  }
+  const { handleSubmit, redirectToRegister, isLoading } = useLogin();
 
   return (
     <div className="p-4 min-h-screen flex items-center justify-center">
       <Card className="w-full max-w-xs sm:max-w-sm md:max-w-md shadow-lg">
         <h2 className="text-xl font-semibold mb-4">Login</h2>
-
         <Form onFinish={handleSubmit} layout="vertical">
           <Form.Item
             name="email"
@@ -47,7 +19,6 @@ export default function LoginCard() {
           >
             <Input />
           </Form.Item>
-
           <Form.Item
             name="password"
             label="Password"
@@ -55,7 +26,6 @@ export default function LoginCard() {
           >
             <Input.Password />
           </Form.Item>
-
           <div className="flex gap-4 mb-0">
             <Form.Item className="flex-1/12 mb-0">
               <Button
@@ -69,10 +39,10 @@ export default function LoginCard() {
             </Form.Item>
             <Button
               type="primary"
-              onClick={redirectToRegister}
+              action={redirectToRegister}
               className="flex-1"
             >
-              Register
+              Sign Up
             </Button>
           </div>
         </Form>
