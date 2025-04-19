@@ -5,7 +5,7 @@ import { BaseButtonProps } from 'antd/es/button/button';
 
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   action?: () => void;
-  type: BaseButtonProps['type'];
+  type?: BaseButtonProps['type'];
   className?: string;
   loading?: boolean;
   htmlType?: 'submit' | 'button' | 'reset' | undefined;
@@ -14,9 +14,9 @@ interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 
 export default function Button({
   action,
-  type,
+  type = 'primary',
   className,
-  loading,
+  loading = false,
   htmlType = 'button',
   children,
 }: ButtonProps) {
